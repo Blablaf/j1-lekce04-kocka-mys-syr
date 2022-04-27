@@ -1,13 +1,20 @@
 package cz.czechitas.kockamyssyr;
 
-import cz.czechitas.kockamyssyr.api.*;
+// cz.czechitas.kockamyssyr.HlavniProgram
 
-import java.awt.*;
+        import cz.czechitas.kockamyssyr.api.*;
+
+        import java.awt.*;
+        import java.util.Random;
 
 /**
  * Hlaví třída pro hru Kočka–myš–sýr.
  */
 public class HlavniProgram {
+    private final Random random = new Random();
+    private Cat tom;
+    private Mouse jerry;
+
 
     /**
      * Spouštěcí metoda celé aplikace.
@@ -22,22 +29,65 @@ public class HlavniProgram {
      * Hlavní metoda obsahující výkonný kód.
      */
     public void run() {
-        new Tree(new Point(400, 200));
-        new Tree(new Point(400, 200));
-        new Tree(new Point(400, 200));
-        new Tree(new Point(400, 200));
+        vytvorStromy(10);
+
         // TODO: Sem vepište svůj program
 
-        new Cat(new Point(50, 100));
-        Cat tom = new Cat(new Point(100, 100));
-        tom.setBrain(new KeyboardBrain());
+//        tom = new Cat(vytvorNahodneSouradnice());
+//        tom.setBrain(new KeyboardBrain());
+        vytvorKocku();
+        vytvorMys();
+        vytvorSyr();
+        vytvorKlobasu();
 
-        new Cheese(new Point(200, 200));
+//        new Cheese(new Point(200, 200));
 
-        Mouse jerry = new Mouse(new Point(600, 200));
-        jerry.setBrain(new KeyboardBrain(KeyCode.W, KeyCode.A, KeyCode.S, KeyCode.D));
+//        jerry = new Mouse(new Point(600, 200));
+//        jerry.setBrain(new KeyboardBrain(KeyCode.W, KeyCode.A, KeyCode.S, KeyCode.D));
 
-        new Meat(new Point(200, 500));
+//        new Meat(new Point(200, 500));
     }
 
+    private void vytvorStromy(int pocet) {
+        for (int i = 0; i < pocet; i++) {
+            new Tree(vytvorNahodneSouradnice());
+        }
+    }
+
+    private Point vytvorNahodneSouradnice() {
+        Point point = new Point(random.nextInt(950), random.nextInt(550));
+        return point;
+    }
+
+    private void vytvorKocku() {
+            Cat Julinka = new Cat(vytvorNahodneSouradnice());
+            Julinka.setBrain(new KeyboardBrain());
 }
+
+    private void vytvorMys() {
+        Mouse Lucinka = new Mouse(vytvorNahodneSouradnice());
+        Lucinka.setBrain(new KeyboardBrain());
+
+
+    private Cheese vytvorSyr() {
+        return new Cheese(vytvorNahodneSouradnice());
+    }
+
+        private Meat vytvorKlobasu() {
+            return new Meat(vytvorNahodneSouradnice());
+        }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
